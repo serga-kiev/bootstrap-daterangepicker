@@ -349,7 +349,7 @@
                 calendar: []
             };
 
-            if (this.opens == 'right') {
+            if (this.opens == 'right' || this.opens == 'bottom' || this.opens == 'top') {
                 //swap calendar positions
                 var left = this.container.find('.calendar.left');
                 var right = this.container.find('.calendar.right');
@@ -475,11 +475,19 @@
                     });
                 }
             } else {
-                this.container.css({
-                    top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
-                    left: this.element.offset().left - parentOffset.left,
-                    right: 'auto'
-                });
+                if (this.opens == 'top' && !this.singleDatePicker) {
+                    this.container.css({
+                        top: this.element.offset().top - this.container.outerHeight(true) - parentOffset.top,
+                        left: this.element.offset().left - parentOffset.left,
+                        right: 'auto'
+                    });
+                } else {
+                    this.container.css({
+                        top: this.element.offset().top + this.element.outerHeight() - parentOffset.top,
+                        left: this.element.offset().left - parentOffset.left,
+                        right: 'auto'
+                    });
+                }
                 if (this.container.offset().left + this.container.outerWidth() > $(window).width()) {
                     this.container.css({
                         left: 'auto',
