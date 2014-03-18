@@ -269,8 +269,13 @@
                         start = moment(split[0], this.format);
                         end = moment(split[1], this.format);
                     } else if (this.singleDatePicker) {
-                        start = moment(val, this.format);
-                        end = moment(val, this.format);
+                        if (val) {
+                            start = moment(val, this.format);
+                            end = moment(val, this.format);
+                        } else {
+                            start = moment();
+                            end = moment();
+                        }
                     }
                     if (start !== null && end !== null) {
                         this.startDate = start;
