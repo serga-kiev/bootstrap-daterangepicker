@@ -553,7 +553,7 @@
             } else if (this.element.is('input')) {
                 this.element.val(this.startDate.format(this.format));
             }
-
+            this.element.change();
         },
 
         clickRange: function (e) {
